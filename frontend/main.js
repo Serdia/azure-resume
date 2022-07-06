@@ -7,12 +7,13 @@ window.addEventListener('DOMContentLoaded', (event) =>{
     getVisitCount();
 })
 
-const functionApi = 'http://localhost:7071/api/GetResumeCounter';
+const functionApiUrl = 'https://fngetresumecounter.azurewebsites.net/api/GetResumeCounter?code=kF_5fxYe7odSnUW1539r1zms9xfmNDKdMQ4eMOVIeo2QAzFu9aUbEQ=='
+const localFunctionApi = 'http://localhost:7071/api/GetResumeCounter';
 
 const getVisitCount = () => {
     let count = 30;
     // fetch call means go get the data that provided in link of functionApi above
-    fetch(functionApi).then(response => {
+    fetch(functionApiUrl).then(response => {
         return response.json()
         // then grab that response and log a quick message for debugging
     }).then(response =>{

@@ -30,3 +30,15 @@ make sure we can view counter data in the browser in our website locally
 2. Deploy to Blob Container
     deploy our static site to out blob container.
 3. setup Azure CDN for HTTPS and custom domain support
+
+## Section 4 - Mapping custom domain
+Caching is the process of storing copies of files in a cache, or temporary storage location, so that they can be accesses more quikly.
+Purging is the process of removing cached contend and updating it before the preditermined expired date.
+
+##  Building our CI/CD pipeline
+1. Create frontene workflow
+    create the GitHub workflow responsible for deploying the frontend of our project.
+2. Implement unit testing
+    create unit test to test our Azure Functions code as part of it's deployment workflow
+3. Create backend workflow
+    create the GitHub workflow responsible for deploying the backend of our project
