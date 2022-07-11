@@ -28,6 +28,7 @@ namespace Company.Function
 
             ILogger log)
         {
+            // here is where the ounter gets updated.
             log.LogInformation("C# HTTP trigger function processed a request.");
             // ** now we need to retrieve the counter, update the counter and return it as json
 
