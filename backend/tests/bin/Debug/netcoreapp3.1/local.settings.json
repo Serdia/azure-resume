@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AzureResumeConnectionString": "AccountEndpoint=https://azureresumeacct.documents.azure.com:443/;AccountKey=68s0q7ifW5ZvsPF4l1tssNOb1ofnvPe9qtrGED3r7sO1FyZdTTyy56JilnLUC12ICwRVOVsRiezUCdG1gJPcDQ==;"
+  },
+  // enable CORS to work with local azure functions host
+  "Host":
+  {
+    "CORS": "*"
+  }
+}
