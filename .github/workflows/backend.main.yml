@@ -7,7 +7,7 @@ on:
   push:
       branches: [ main ]
       paths: 
-      - 'backend/**'
+      - 'backend/**' # whenever change in a backup folder - it will be picked up
 env:
   AZURE_FUNCTIONAPP_NAME: GetResumeCounter    # set this to your application's name
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend'   # set this to the path to your web app project, defaults to the repository root
@@ -37,11 +37,11 @@ jobs:
         dotnet build --configuration Release --output ./output
         popd
                
-    - name: "Run unit test"
-      shell: pwsh 
-      run: |
-        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/tests'
-        dotnet test
+    # - name: "Run unit test"
+    #   shell: pwsh 
+    #   run: |
+    #     pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/tests'
+    #     dotnet test
 
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
