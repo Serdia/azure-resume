@@ -6,20 +6,21 @@ name: deploy_backend
 on:
   push:
       branches: [ main ]
-      paths: 
-      - 'backend/**' # whenever change in a backup folder - it will be picked up
+      paths:
+      - 'backend/api/**'
+
 env:
-  AZURE_FUNCTIONAPP_NAME: fnGetResumeCounter    # set this to your application's name
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend'   # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: '3.1'                       # set this to the dotnet version to use
+  AZURE_FUNCTIONAPP_NAME: GetResumeCounter  # set this to your application's name
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend'    # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '3.1'              # set this to the dotnet version to use
 
 jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
     - name: 'Checkout GitHub Action'
-      uses: actions/checkout@v2
-    # use the same secret we generated for frontend.
+      uses: actions/checkout@main
+    
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
@@ -36,15 +37,14 @@ jobs:
         pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/api'
         dotnet build --configuration Release --output ./output
         popd
-               
-    - name: "Run unit test"
-      shell: pwsh 
-      run: |
+    - name: 'Run unit test'
+      shell: pwsh
+      run: | 
         pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/tests'
         dotnet test
-
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
+      id: fa
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
         package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/api/output'
